@@ -35,6 +35,7 @@
             'border-paleCornflowerBlueSolid bg-transparent': disabled,
           }"
           @focus="focused = true"
+          @blur="blur"
         >
           <div
             class="flex w-full justify-between"
@@ -233,6 +234,11 @@ export default defineComponent({
   methods: {
     onClear() {
       this.selectedValue = null
+    },
+
+    blur() {
+      this.focused = false
+      this.blurFunc()
     },
   },
 })
