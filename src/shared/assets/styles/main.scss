@@ -12,3 +12,16 @@
 .page-title {
   @apply text-3xl font-bold uppercase leading-[30px];
 }
+
+.text-label {
+  @apply font-sans text-ceil text-xs absolute;
+
+  &--error {
+    animation: shake 0.3s;
+    @apply text-tuscanySolid;
+  }
+
+  &--disabled {
+    @apply text-darkElectricBlue
+  }
+}
