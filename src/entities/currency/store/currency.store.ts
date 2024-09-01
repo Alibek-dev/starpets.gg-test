@@ -36,10 +36,39 @@ export const useCurrencyStore = defineStore('currency', () => {
       }),
     )
 
+  const selectedCurrency = ref('')
+
+  const setSelectedCurrency = (value: string) => {
+    selectedCurrency.value = value
+  }
+
+  const getRatesByBaseCurrency = computed(
+    (): {
+      targetCurrency: string
+      rate: number
+    }[] => {
+      if (!currencyRates.value || !selectedCurrency.value) return []
+
+      return Object.entries(currencyRates.value)
+        .filter(([key]) => key.startsWith(selectedCurrency.value.toLowerCase()))
+        .map(([key, rate]) => {
+          const targetCurrency = key.split('-')[1].toUpperCase()
+
+          return {
+            targetCurrency,
+            rate,
+          }
+        })
+    },
+  )
+
   return {
     currencyRates,
-    fetchCurrencies,
     getUniqueCurrencies,
     getCurrencyItems,
+    selectedCurrency,
+    fetchCurrencies,
+    getRatesByBaseCurrency,
+    setSelectedCurrency,
   }
 })

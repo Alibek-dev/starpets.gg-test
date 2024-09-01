@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BngSelect from '@shared/ui/BngSelect.vue'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { useCurrencyStore } from '@/entities/currency/store/currency.store'
@@ -13,7 +13,10 @@ const routes = computed(() => [
 const route = useRoute()
 const currencyStore = useCurrencyStore()
 
-const selectedCurrency = ref(currencyStore.getUniqueCurrencies[0])
+onMounted(() => {
+  currencyStore.setSelectedCurrency(currencyStore.getUniqueCurrencies[0])
+})
+
 const currencies = computed(() => currencyStore.getCurrencyItems)
 </script>
 
@@ -36,12 +39,15 @@ const currencies = computed(() => currencyStore.getCurrencyItems)
 
     <div class="w-4/12">
       <BngSelect
-        v-model="selectedCurrency"
+        :model-value="currencyStore.selectedCurrency"
         size="small"
         placeholder="Валюта"
         :items="currencies"
         item-value="value"
         item-text="name"
+        @update:modelValue="
+          (value: string) => currencyStore.setSelectedCurrency(value)
+        "
       />
     </div>
   </div>
