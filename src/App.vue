@@ -22,7 +22,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="font-manrope text-base font-normal text-eerieBlack">
+  <div class="font-manrope text-base font-normal text-richBlack">
     <component :is="layout"></component>
   </div>
 </template>

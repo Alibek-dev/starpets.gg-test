@@ -1,14 +1,13 @@
 <script setup lang="ts">
-
 import DefaultHeader from '@shared/ui/DefaultHeader.vue'
 </script>
 
 <template>
-  <div
-    class="flex h-[calc(100vh-10px)] max-h-screen flex-col justify-between px-6 pt-5 3xl:px-[156px]"
-  >
-    <div class="pb-6">
-      <DefaultHeader class="mb-6" />
+  <div class="flex w-full justify-center px-40 py-6">
+    <div
+      class="flex w-full max-w-screen-md rounded-2xl border border-eerieBlack p-6"
+    >
+      <DefaultHeader class="mb-6 w-full" />
       <router-view />
     </div>
   </div>

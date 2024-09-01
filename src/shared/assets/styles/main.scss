@@ -1,0 +1,14 @@
+@import "fonts";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.default-height {
+  @apply h-[calc(100vh-40px)]
+}
+
+// text styles
+.page-title {
+  @apply text-3xl font-bold uppercase leading-[30px];
+}
