@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import BngSelect from '@shared/ui/BngSelect.vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
+
+import { useCurrencyStore } from '@/entities/currency/store/currency.store'
 
 const routes = computed(() => [
   { name: 'Главная', routeName: 'home' },
@@ -8,11 +11,15 @@ const routes = computed(() => [
 ])
 
 const route = useRoute()
+const currencyStore = useCurrencyStore()
+
+const selectedCurrency = ref(currencyStore.getUniqueCurrencies[0])
+const currencies = computed(() => currencyStore.getCurrencyItems)
 </script>
 
 <template>
-  <div class="flex justify-between">
-    <ul class="flex gap-6">
+  <div class="flex items-center justify-between">
+    <ul class="flex gap-12">
       <li
         v-for="routeItem of routes"
         :key="routeItem.routeName"
@@ -27,7 +34,16 @@ const route = useRoute()
       </li>
     </ul>
 
-    <div>asdlkfjalskjdfkl</div>
+    <div class="w-4/12">
+      <BngSelect
+        v-model="selectedCurrency"
+        size="small"
+        placeholder="Валюта"
+        :items="currencies"
+        item-value="value"
+        item-text="name"
+      />
+    </div>
   </div>
 </template>
 
