@@ -1,15 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import { RouteCodeNames } from '@/app/routes/@types'
-
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      name: RouteCodeNames.HOME,
+      name: 'home',
       path: '/',
-      meta: { layout: 'home' },
-      component: () => import('@/pages/home/HomeMainPage.vue'),
+      component: () => import('@/pages/Home.vue'),
     },
-    ]
+    {
+      name: 'convert',
+      path: '/convert',
+      component: () => import('@/pages/Convert.vue'),
+    },
+  ],
 })
